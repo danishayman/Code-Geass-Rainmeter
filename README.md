@@ -2,7 +2,7 @@
 
 This repository contains custom Rainmeter skins inspired by *Code Geass*. Follow the steps below to set up and use the skins on your own machine.
 
-![alt text](image.png)
+![My Cool GIF](assets/cool-gif.gif)
 
 ## Prerequisites
 
@@ -51,7 +51,7 @@ Launch Rainmeter from the Start Menu.
 Unload or delete the default rainmeter skin
 
 3. **Load Skins**  
-![alt text](image-2.png)
+![alt text](assets/image-2.png)
 Open the `Layouts` tab, select `Laptop` or `Monitor` layout (depending on your screen size) and click `Load`
 
 
