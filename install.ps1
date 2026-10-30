@@ -1,27 +1,20 @@
 <#
 .SYNOPSIS
-    Installs the Code Geass Rainmeter suite (GurenHoneycomb) and its layouts.
+    Installs the Code Geass Rainmeter suite (GurenHoneycomb) and its layout.
 
 .DESCRIPTION
     1. Backs up any existing GurenHoneycomb / GurenLauncher skins and Code Geass layouts.
-    2. Copies Skins\GurenHoneycomb into your Rainmeter skins folder and the layouts into
-       %APPDATA%\Rainmeter\Layouts.
+    2. Copies Skins\GurenHoneycomb into your Rainmeter skins folder and the CodeGeass
+       layout into %APPDATA%\Rainmeter\Layouts.
     3. Checks what each icon opens. If an app is installed somewhere else on this PC,
        the icon is pointed at it; anything not found is listed at the end.
-    4. Restarts Rainmeter and loads the layout that fits your screen.
+    4. Restarts Rainmeter and loads the layout, which centres itself on any screen.
 
 .EXAMPLE
     .\install.ps1
-
-.EXAMPLE
-    .\install.ps1 -Layout Laptop
 #>
 [CmdletBinding()]
 param(
-    # Layout to load. Auto picks Monitor or Laptop from your screen size.
-    [ValidateSet('Auto', 'Monitor', 'Laptop')]
-    [string]$Layout = 'Auto',
-
     # Only copy the files. Rainmeter is not restarted and no layout is loaded.
     [switch]$NoLoad,
 
@@ -37,7 +30,9 @@ $ErrorActionPreference = 'Stop'
 $suite = 'GurenHoneycomb'
 # GurenLauncher was merged into GurenHoneycomb, so an old copy of it is backed up and removed too.
 $oldSkins = 'GurenHoneycomb', 'GurenLauncher'
-$layouts = 'MonitorLayout', 'LaptopLayout'
+$layout = 'CodeGeass'
+# CodeGeass replaced the old per-screen MonitorLayout and LaptopLayout.
+$oldLayouts = 'CodeGeass', 'MonitorLayout', 'LaptopLayout'
 
 function Find-Rainmeter {
     foreach ($key in 'HKLM:\SOFTWARE\WOW6432Node\Rainmeter', 'HKLM:\SOFTWARE\Rainmeter') {
@@ -102,20 +97,11 @@ if (-not $SkinsPath) {
 $layoutsPath = Join-Path $SettingsPath 'Layouts'
 $backup = Join-Path $SettingsPath ('Backups\CodeGeass-' + (Get-Date -Format 'yyyyMMdd-HHmmss'))
 
-if ($Layout -eq 'Auto') {
-    Add-Type -AssemblyName System.Windows.Forms
-    $screen = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
-    $Layout = if ($screen.Width -ge 1800) { 'Monitor' } else { 'Laptop' }
-    Write-Host "Screen is $($screen.Width)x$($screen.Height), so the $Layout layout will be used."
-}
-$layoutName = $Layout + 'Layout'
-
-Write-Host ''
 Write-Host 'This will:'
 Write-Host "  - copy $suite to $SkinsPath"
-Write-Host "  - copy $($layouts -join ' and ') to $layoutsPath"
+Write-Host "  - copy the $layout layout to $layoutsPath"
 Write-Host "  - back up any copies already there to $backup"
-if (-not $NoLoad) { Write-Host "  - restart Rainmeter and load $layoutName" }
+if (-not $NoLoad) { Write-Host "  - restart Rainmeter and load the $layout layout" }
 if (-not $Yes) {
     $answer = Read-Host 'Continue? [Y/n]'
     if ($answer -match '^\s*n') { Write-Host 'Cancelled.'; exit 0 }
@@ -134,7 +120,7 @@ if (-not $NoLoad -and $wasRunning) {
 
 $backedUp = $false
 $existing = @($oldSkins | ForEach-Object { @{ Path = Join-Path $SkinsPath $_; Backup = "Skins\$_" } }) +
-            @($layouts | ForEach-Object { @{ Path = Join-Path $layoutsPath $_; Backup = "Layouts\$_" } })
+            @($oldLayouts | ForEach-Object { @{ Path = Join-Path $layoutsPath $_; Backup = "Layouts\$_" } })
 foreach ($item in $existing) {
     if (-not (Test-Path $item.Path)) { continue }
     $dest = Join-Path $backup $item.Backup
@@ -146,10 +132,8 @@ foreach ($item in $existing) {
 
 New-Item -ItemType Directory -Force $SkinsPath, $layoutsPath | Out-Null
 Copy-Item (Join-Path $PSScriptRoot "Skins\$suite") (Join-Path $SkinsPath $suite) -Recurse
-foreach ($l in $layouts) {
-    Copy-Item (Join-Path $PSScriptRoot "Layouts\$l") (Join-Path $layoutsPath $l) -Recurse
-}
-Write-Host 'Copied the skins and layouts.'
+Copy-Item (Join-Path $PSScriptRoot "Layouts\$layout") (Join-Path $layoutsPath $layout) -Recurse
+Write-Host 'Copied the skins and layout.'
 
 $missing = @()
 foreach ($ini in Get-ChildItem (Join-Path $SkinsPath "$suite\Icons") -Filter *.ini -Recurse) {
@@ -169,13 +153,13 @@ if (-not $NoLoad) {
     Start-Process $rainmeter
     # Give Rainmeter a moment to start before sending it the layout.
     Start-Sleep -Seconds 3
-    & $rainmeter '!LoadLayout' $layoutName
+    & $rainmeter '!LoadLayout' $layout
 }
 
 Write-Host ''
 Write-Host 'Done.' -ForegroundColor Green
 if ($backedUp) { Write-Host "Your previous copy is in $backup" }
-if ($NoLoad) { Write-Host "Load $layoutName from the Layouts tab in Rainmeter's Manage window." }
+if ($NoLoad) { Write-Host "Load the $layout layout from the Layouts tab in Rainmeter's Manage window." }
 if ($missing) {
     Write-Host ''
     Write-Host 'These icons open apps that are not on this PC, so clicking them does nothing yet:' -ForegroundColor Yellow

@@ -13,25 +13,17 @@ A Code Geass desktop for [Rainmeter](https://www.rainmeter.net/). Click the Geas
 The installer:
 
 - backs up any earlier copy of these skins and layouts to `%APPDATA%\Rainmeter\Backups`
-- copies the skins and layouts into Rainmeter's folders
+- copies the skins and the `CodeGeass` layout into Rainmeter's folders
 - checks what each icon opens, points it at the app if it's installed somewhere else on your PC, and lists any apps it can't find
-- restarts Rainmeter and loads the layout that fits your screen
+- restarts Rainmeter and loads the layout
 
-To choose the layout yourself, or to only copy the files, run it from a terminal in the extracted folder:
-
-| Command | What it does |
-| --- | --- |
-| `install.bat -Layout Monitor` | Load the monitor layout |
-| `install.bat -Layout Laptop` | Load the laptop layout |
-| `install.bat -NoLoad` | Copy the files only. Rainmeter isn't restarted. |
+To only copy the files without restarting Rainmeter, run `install.bat -NoLoad` from a terminal in the extracted folder.
 
 ### Manual install
 
 1. Copy `Skins\GurenHoneycomb` into your Rainmeter skins folder. That's usually `Documents\Rainmeter\Skins`, or `OneDrive\Documents\Rainmeter\Skins` if your Documents folder syncs with OneDrive.
-2. Copy `Layouts\MonitorLayout` and `Layouts\LaptopLayout` into `%APPDATA%\Rainmeter\Layouts`.
-3. In Rainmeter's **Manage** window, open the **Layouts** tab, pick a layout and click **Load**.
-
-![Layouts tab](assets/image-2.png)
+2. Copy `Layouts\CodeGeass` into `%APPDATA%\Rainmeter\Layouts`.
+3. In Rainmeter's **Manage** window, open the **Layouts** tab, pick `CodeGeass` and click **Load**.
 
 ## Using it
 
@@ -39,16 +31,12 @@ To choose the layout yourself, or to only copy the files, run it from a terminal
 - Click the sigil to hide or show the icons.
 - Hover an icon to see its wallpaper, and click it to open the app.
 - Scroll the mouse wheel over the sigil to change the system volume. While you scroll, the glow's brightness shows the level: dim when quiet, full at 100%.
-- Right-click the sigil to switch between the monitor and laptop layouts.
 
-| Layout | Made for |
-| --- | --- |
-| `MonitorLayout` | 1920x1080 at 100% scaling |
-| `LaptopLayout` | 1536x864, which is a 1080p laptop at 125% scaling |
+The layout works out every position from your screen size, so the sigil and icons sit in the middle of any screen.
 
 ## Icons
 
-The layouts show this row, left to right: Folder (opens Documents), Telegram, VS Code, YouTube (opens the YouTube Music app), Discord, Chrome, Steam, Epic Games, Riot Client, Xbox.
+The layout shows this row, left to right: Folder (opens Documents), Telegram, VS Code, YouTube (opens the YouTube Music app), Discord, Chrome, Steam, Epic Games, Riot Client, Xbox.
 
 More icons are ready to load from the **Skins** tab under `GurenHoneycomb\Icons`:
 
@@ -111,7 +99,15 @@ Get-StartApps | Where-Object Name -like '*spotify*'
 2. Put a square `.png` in `@Resources\Images\Icons`. `@Resources\Source\template.psd` is the honeycomb template.
 3. Edit `Icon` and `Launch` in `MyApp.ini`. If it has no wallpaper, remove the `Wallpaper` line and include `Icon.inc` instead.
 4. For a wallpaper, copy a folder in `GurenHoneycomb\Wallpapers` the same way, put the image in `@Resources\Images\Wallpapers`, set `Image` to its file name, and set the icon's `Wallpaper` to the new folder's name.
-5. In Rainmeter's **Manage** window, click **Refresh all**, load `Icons\MyApp`, and set its position in the X and Y boxes.
+5. In Rainmeter's **Manage** window, click **Refresh all** and load `Icons\MyApp`.
+6. To keep it centered like the others, click **Edit settings** and give its section a position worked out the same way. For example, this puts it just after Xbox:
+
+   ```ini
+   WindowX=(#SCREENAREAWIDTH#/2+505)
+   WindowY=(#SCREENAREAHEIGHT#/2+160)
+   ```
+
+   Save the file and click **Refresh all**.
 
 ### Change a wallpaper
 
@@ -136,13 +132,13 @@ Each scroll-wheel notch over the sigil changes the volume by `VolumeStep` percen
 
 ### Keep your changes
 
-After moving or adding icons, save them into the layout: in **Manage > Layouts**, type `MonitorLayout` or `LaptopLayout` as the name and click **Save**.
+After moving or adding icons, save them into the layout: in **Manage > Layouts**, type `CodeGeass` as the name and click **Save**. Skins you drag or place with the X and Y boxes get fixed positions, while the rest stay centered on any screen.
 
 ## Troubleshooting
 
 - **Clicking an icon does nothing.** The app isn't installed, or it's installed somewhere the icon doesn't know about. Run `install.bat` again to repoint the icons it can find, or edit the icon's `Launch` line.
 - **No icons appear.** They fade in about a second after the sigil. If they still don't show, you probably hid them, so click the sigil.
-- **Everything is off-center.** You're on the other layout. Right-click the sigil and pick the right one.
+- **The sigil or icons are in the wrong place.** Load `CodeGeass` again from **Manage > Layouts**. If you saved over it, run `install.bat` to get the original back.
 - **I want my old setup back.** The installer's backups are in `%APPDATA%\Rainmeter\Backups`. Rainmeter's **Layouts** tab also has `@Backup`, which is your setup from before the last layout was loaded.
 
 ## Credits
