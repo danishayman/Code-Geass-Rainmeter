@@ -13,5 +13,5 @@ Meter=Image
 ImageName=#@#Images\Icons\#Icon#.png
 H=90
 LeftMouseUpAction=#Launch#[!HideFadeGroup "Honey"]
-MouseOverAction=[!SetOption Image ImageName "#@#Images\Wallpapers\#Wallpaper#" "GurenHoneycomb\Wallpaper"][!UpdateMeter Image "GurenHoneycomb\Wallpaper"][!Redraw "GurenHoneycomb\Wallpaper"][!Show "GurenHoneycomb\Wallpaper"][!HideGroup "Geass"]
-MouseLeaveAction=[!Hide "GurenHoneycomb\Wallpaper"][!ShowFadeGroup "Geass"]
+MouseOverAction=[!SetOption Image ImageName "#@#Images\Wallpapers\#Wallpaper#" "GurenHoneycomb\Wallpaper"][!UpdateMeter Image "GurenHoneycomb\Wallpaper"][!Redraw "GurenHoneycomb\Wallpaper"][!ShowFade "GurenHoneycomb\Wallpaper"][!HideFadeGroup "Geass"]
+MouseLeaveAction=[!HideFade "GurenHoneycomb\Wallpaper"][!ShowFadeGroup "Geass"]

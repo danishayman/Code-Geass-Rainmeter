@@ -46,7 +46,7 @@ To choose the layout yourself, or to only copy the files, run it from a terminal
 
 ## Icons
 
-The layouts show this row, left to right: Folder (opens Documents), Telegram, VS Code, YouTube, Discord, Chrome, Steam, Epic Games, Riot Client, Xbox.
+The layouts show this row, left to right: Folder (opens Documents), Telegram, VS Code, YouTube (opens the YouTube Music app), Discord, Chrome, Steam, Epic Games, Riot Client, Xbox.
 
 More icons are ready to load from the **Skins** tab under `GurenHoneycomb\Icons`:
 
@@ -111,6 +111,8 @@ Get-StartApps | Where-Object Name -like '*spotify*'
 ### Change a wallpaper
 
 Replace the image in `@Resources\Images\Wallpapers`, keeping its name, or add a new image and change the icon's `Wallpaper` line. Wallpapers are scaled to fill the screen.
+
+The wallpaper fades in as the sigil fades out, over 800 milliseconds. To change the speed, set `FadeDuration` to the same number in `Wallpaper\Wallpaper.ini` and `Geass\Geass.ini`.
 
 ### Keep your changes
 
