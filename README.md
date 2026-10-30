@@ -57,7 +57,6 @@ GurenHoneycomb
 │   ├── IconWallpaper.inc   shared by icons with a hover wallpaper
 │   ├── IconIntro.inc       the startup fade-in shared by every icon
 │   ├── IconPop.inc         the hover pop shared by every icon
-│   ├── Sleep.ps1           puts the PC to sleep, for the power menu and the Power icon
 │   ├── Wallpaper.inc       shared by every hover wallpaper
 │   ├── Images
 │   │   ├── Icons           one .png per icon
