@@ -35,7 +35,7 @@ To choose the layout yourself, or to only copy the files, run it from a terminal
 
 ## Using it
 
-- When Rainmeter starts or your PC wakes, the sigil appears already glowing, then the glow dims away as the icons fade in from the middle out to both ends.
+- When Rainmeter starts or your PC wakes, the sigil fades in with its glow, then the glow dims away as the icons fade in from the middle out to both ends.
 - Click the sigil to hide or show the icons.
 - Hover an icon to see its wallpaper, and click it to open the app.
 - Scroll the mouse wheel over the sigil to change the system volume. While you scroll, the glow's brightness shows the level: dim when quiet, full at 100%.
@@ -127,7 +127,7 @@ Replace the image in `@Resources\Images\Wallpapers`, keeping its name, or add a 
 
 ### Change the startup intro
 
-- **Sigil:** the `[Intro]` section of `Geass\Geass.ini`. `ActionList1` fades the sigil in, in 25 steps of 40 milliseconds. `ActionList2` is the glow: `Wait 500` is how long it stays at full brightness, and `Repeat GlowDim,40,24` dims it to nothing over about a second.
+- **Sigil:** the `[Intro]` section of `Geass\Geass.ini`. `Repeat FadeIn,40,25` fades the sigil and its glow in together, in 25 steps of 40 milliseconds. `Repeat GlowDim,40,10` then dims the glow away in 10 steps.
 - **Icons:** `@Resources\IconIntro.inc`. Each icon waits `625` milliseconds plus `1.5` milliseconds for every pixel between its center and the middle of the screen. With 100 pixels between icons, each pair fades in 150 milliseconds after the pair inside it.
 
 ### Change the volume step
