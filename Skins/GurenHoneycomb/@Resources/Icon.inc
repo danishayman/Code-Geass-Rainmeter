@@ -6,12 +6,20 @@
 [Rainmeter]
 Update=-1
 Group=Honey
+SkinWidth=100
+SkinHeight=100
 OnRefreshAction=[!Hide][!CommandMeasure Intro "Execute 1"]
 OnWakeAction=[!Hide][!CommandMeasure Intro "Execute 1"]
 
 [Icon]
 Meter=Image
 ImageName=#@#Images\Icons\#Icon#.png
-H=90
+X=(5-#Pop#)
+Y=(5-#Pop#)
+H=(90+2*#Pop#)
+DynamicVariables=1
 LeftMouseUpAction=#Launch#[!HideFadeGroup "Honey"]
+MouseOverAction=[!CommandMeasure Pop "Stop 2"][!CommandMeasure Pop "Execute 1"]
+MouseLeaveAction=[!CommandMeasure Pop "Stop 1"][!CommandMeasure Pop "Execute 2"]
 @IncludeIntro=#@#IconIntro.inc
+@IncludePop=#@#IconPop.inc

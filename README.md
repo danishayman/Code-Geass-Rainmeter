@@ -29,7 +29,7 @@ To only copy the files without restarting Rainmeter, run `install.bat -NoLoad` f
 
 - When Rainmeter starts or your PC wakes, the sigil fades in with its glow, then the glow dims away as the icons fade in from the middle out to both ends.
 - Click the sigil to hide or show the icons.
-- Hover an icon to see its wallpaper, and click it to open the app.
+- Hover an icon and it grows slightly and brings up its wallpaper. Click it to open the app.
 - Scroll the mouse wheel over the sigil to change the system volume. While you scroll, the glow's brightness shows the level: dim when quiet, full at 100%.
 
 The layout works out every position from your screen size, so the sigil and icons sit in the middle of any screen.
@@ -54,6 +54,7 @@ GurenHoneycomb
 │   ├── Icon.inc            shared by icons without a hover wallpaper
 │   ├── IconWallpaper.inc   shared by icons with a hover wallpaper
 │   ├── IconIntro.inc       the startup fade-in shared by every icon
+│   ├── IconPop.inc         the hover pop shared by every icon
 │   ├── Wallpaper.inc       shared by every hover wallpaper
 │   ├── Images
 │   │   ├── Icons           one .png per icon
@@ -103,8 +104,8 @@ Get-StartApps | Where-Object Name -like '*spotify*'
 6. To keep it centered like the others, click **Edit settings** and give its section a position worked out the same way. For example, this puts it just after Xbox:
 
    ```ini
-   WindowX=(#SCREENAREAWIDTH#/2+505)
-   WindowY=(#SCREENAREAHEIGHT#/2+160)
+   WindowX=(#SCREENAREAWIDTH#/2+500)
+   WindowY=(#SCREENAREAHEIGHT#/2+155)
    ```
 
    Save the file and click **Refresh all**.
@@ -125,6 +126,10 @@ Replace the image in `@Resources\Images\Wallpapers`, keeping its name, or add a 
 
 - **Sigil:** the `[Intro]` section of `Geass\Geass.ini`. `Repeat FadeIn,40,25` fades the sigil and its glow in together, in 25 steps of 40 milliseconds. `Repeat GlowDim,40,10` then dims the glow away in 10 steps.
 - **Icons:** `@Resources\IconIntro.inc`. Each icon waits `625` milliseconds plus `1.5` milliseconds for every pixel between its center and the middle of the screen. With 100 pixels between icons, each pair fades in 150 milliseconds after the pair inside it.
+
+### Change the hover pop
+
+`@Resources\IconPop.inc` grows a hovered icon by 2 pixels per step. The `3` in `Repeat Grow,30,3`, `Repeat Shrink,30,3` and both `Clamp(...,0,3)` is the number of steps, so 3 takes the icon from 90 to 96 pixels. Keep it at 5 or less, since each icon skin only has 5 pixels of room around the icon.
 
 ### Change the volume step
 
