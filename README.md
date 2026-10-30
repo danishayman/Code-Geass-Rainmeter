@@ -70,7 +70,7 @@ GurenHoneycomb
 │   ├── Images
 │   │   ├── Icons           one .png per icon
 │   │   └── Wallpapers      hover wallpaper images
-│   └── Source              .psd and .xcf files for making new icons, and the uncut glow
+│   └── Source              .psd and .xcf files for making new icons
 ├── Geass                   the sigil
 ├── Glow                    the glow behind the sigil when you hover it
 ├── Icons                   one folder per icon
