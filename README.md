@@ -1,111 +1,130 @@
-# 🔮 Code Geass Rainmeter Skins
+# Code Geass Rainmeter
 
-This repository contains custom Rainmeter skins inspired by *Code Geass*. Follow the steps below to set up and use the skins on your own machine.
+A Code Geass desktop for [Rainmeter](https://www.rainmeter.net/). Click the Geass sigil to bring up a row of honeycomb app icons, and hover an icon to show that app's wallpaper.
 
-![My Cool GIF](assets/cool-gif.gif)
+![Preview](assets/cool-gif.gif)
 
-## 📦 What's Included
+## Install
 
-| Folder | What it does |
+1. Install [Rainmeter](https://www.rainmeter.net/) (tested with 4.5).
+2. Download this repository (**Code > Download ZIP**) and extract it.
+3. Double-click `install.bat`.
+
+The installer:
+
+- backs up any earlier copy of these skins and layouts to `%APPDATA%\Rainmeter\Backups`
+- copies the skins and layouts into Rainmeter's folders
+- checks what each icon opens, points it at the app if it's installed somewhere else on your PC, and lists any apps it can't find
+- restarts Rainmeter and loads the layout that fits your screen
+
+To choose the layout yourself, or to only copy the files, run it from a terminal in the extracted folder:
+
+| Command | What it does |
 | --- | --- |
-| `Skins/GurenHoneycomb` | The Geass logo and the honeycomb app icons. Click the logo to show or hide the icons. |
-| `Skins/GurenLauncher` | Full-screen wallpapers that fade in when you hover over an icon. |
-| `Skins/@Vault` | Plugins the skins need (`AudioLevelBeta`, `Mouse`). |
-| `Layouts/LaptopLayout` | Icon positions for a laptop screen. |
-| `Layouts/MonitorLayout` | Icon positions for a larger monitor. |
+| `install.bat -Layout Monitor` | Load the monitor layout |
+| `install.bat -Layout Laptop` | Load the laptop layout |
+| `install.bat -NoLoad` | Copy the files only. Rainmeter isn't restarted. |
 
-The layouts load this row of icons under the Geass logo, from left to right:
+### Manual install
 
-📁 Folder · ✈️ Telegram · 💻 VS Code · ▶️ YouTube · 💬 Discord · 🌐 Chrome · 🚂 Steam · 🎯 Epic Games · ⚔️ Riot Client · 🎮 Xbox
+1. Copy `Skins\GurenHoneycomb` into your Rainmeter skins folder. That's usually `Documents\Rainmeter\Skins`, or `OneDrive\Documents\Rainmeter\Skins` if your Documents folder syncs with OneDrive.
+2. Copy `Layouts\MonitorLayout` and `Layouts\LaptopLayout` into `%APPDATA%\Rainmeter\Layouts`.
+3. In Rainmeter's **Manage** window, open the **Layouts** tab, pick a layout and click **Load**.
 
-`GurenHoneycomb` has many more icons (Spotify, Firefox, Valorant, Minecraft, and more). You can load them from Rainmeter's **Skins** tab.
+![Layouts tab](assets/image-2.png)
 
-## 📋 Prerequisites
+## Using it
 
-Before using these skins, you must have **Rainmeter** installed on your computer.
+- Click the sigil to show or hide the icons. They start hidden.
+- Hover an icon to see its wallpaper, and click it to open the app.
+- Right-click the sigil to switch between the monitor and laptop layouts.
 
-### 🔽 Installing Rainmeter
+| Layout | Made for |
+| --- | --- |
+| `MonitorLayout` | 1920x1080 at 100% scaling |
+| `LaptopLayout` | 1536x864, which is a 1080p laptop at 125% scaling |
 
-1. Download the latest version of Rainmeter from the official website:  
-   [https://www.rainmeter.net/](https://www.rainmeter.net/)
-   
-2. Follow the installation instructions provided on the website to install Rainmeter.
+## Icons
 
-## 🚀 Setup Instructions
+The layouts show this row, left to right: Folder (opens Documents), Telegram, VS Code, YouTube, Discord, Chrome, Steam, Epic Games, Riot Client, Xbox.
 
-### 1️⃣ Copy the Skins
+More icons are ready to load from the **Skins** tab under `GurenHoneycomb\Icons`:
 
-1. **Download the Repository** 📥  
-   Clone or download this repository to your local machine.
+| Group | Icons |
+| --- | --- |
+| Apps | Brave, WhatsApp, Office (opens Word), Excel, PowerPoint, Notepad, Visual Studio, Spotify, Rainmeter (opens Manage), Settings |
+| Games | Valorant, Legends of Runeterra, Minecraft, CS2, GTA V, Skyrim, osu!, Game (a blank game icon that opens your Steam library) |
+| Power | Double-click to sleep, middle double-click to shut down, right double-click to restart |
 
-2. **Navigate to Your Rainmeter Skins Folder** 📁  
-   By default, your Rainmeter skins should be located at:
+## Customizing
 
-   ```
-   C:\Users\<YourUsername>\Documents\Rainmeter\Skins
-   ```
+```
+GurenHoneycomb
+├── @Resources
+│   ├── Icon.inc            shared by icons without a hover wallpaper
+│   ├── IconWallpaper.inc   shared by icons with a hover wallpaper
+│   ├── Images
+│   │   ├── Icons           one .png per icon
+│   │   └── Wallpapers      hover wallpapers
+│   └── Source              .psd and .xcf files for making new icons
+├── Geass                   the sigil
+├── Glow                    the glow behind the sigil when you hover it
+├── Icons                   one folder per icon
+└── Wallpaper               the full-screen hover wallpaper, shared by every icon
+```
 
-   If your Documents folder is synced with OneDrive, look in `C:\Users\<YourUsername>\OneDrive\Documents\Rainmeter\Skins` instead.
+### Change what an icon opens
 
-3. **Copy the Skins In** 🔄  
-   Copy the `@Vault`, `GurenHoneycomb` and `GurenLauncher` folders from this repository's `Skins` folder into your `Skins` folder. If Windows asks about `@Vault`, choose to merge it.
+Right-click the icon and choose **Edit skin**. Every icon is a few lines like this:
 
-### 2️⃣ Copy the Layouts
+```ini
+[Variables]
+Icon=steam
+Launch=["steam://open/main"]
+StartMenuName=Steam
+Wallpaper=steam.jpg
+@Include=#@#IconWallpaper.inc
+```
 
-1. **Navigate to the Layouts Folder** 📁  
-   Open the following directory (you can paste it into File Explorer's address bar):
+| Line | Meaning |
+| --- | --- |
+| `Icon` | Image in `@Resources\Images\Icons`, without `.png` |
+| `Launch` | What a click runs: a program (`["chrome.exe"]`), a full path, a link (`["https://www.youtube.com"]`, `["steam://rungameid/730"]`), a Start Menu app (`["shell:AppsFolder\<AppID>"]`) or a Rainmeter bang (`[!Manage]`) |
+| `StartMenuName` | Optional. The app's name in the Start Menu. The installer uses it to find the app when `Launch` doesn't work on that PC. |
+| `Wallpaper` | Optional. Image in `@Resources\Images\Wallpapers` shown while hovering. Icons with a wallpaper include `IconWallpaper.inc`, and icons without one include `Icon.inc`. |
 
-   ```
-   %APPDATA%\Rainmeter\Layouts
-   ```
+Save the file, then right-click the icon and choose **Refresh skin**.
 
-2. **Copy the Layouts In** 🔄  
-   Copy the `LaptopLayout` and `MonitorLayout` folders from this repository's `Layouts` folder into it.
+To find a Start Menu app's AppID, run this in PowerShell (swap in your app's name):
 
-### 3️⃣ Load the Skins in Rainmeter
+```powershell
+Get-StartApps | Where-Object Name -like '*spotify*'
+```
 
-1. **Open Rainmeter** 🖥️  
-Launch Rainmeter from the Start Menu.
+### Add an icon
 
-2. **Unload the Default Skins** 🗑️  
-Unload or delete the default `illustro` skins.
+1. Copy an icon's folder in `GurenHoneycomb\Icons` (for example `Steam` to `MyApp`) and rename the `.ini` inside to `MyApp.ini`.
+2. Put a square `.png` in `@Resources\Images\Icons`. `@Resources\Source\template.psd` is the honeycomb template.
+3. Edit `Icon`, `Launch` and `Wallpaper` in `MyApp.ini`. Remove the `Wallpaper` line and include `Icon.inc` instead if it has no wallpaper.
+4. In Rainmeter's **Manage** window, click **Refresh all**, load `Icons\MyApp`, and set its position in the X and Y boxes.
 
-3. **Load a Layout** ✨  
-![alt text](assets/image-2.png)
-Open the `Layouts` tab, select `LaptopLayout` or `MonitorLayout` (depending on your screen size) and click `Load`.
+### Change a wallpaper
 
-### 4️⃣ Point the Icons at Your Apps
+Replace the image in `@Resources\Images\Wallpapers`, keeping its name, or add a new image and change the icon's `Wallpaper` line. Wallpapers are scaled to fill the screen.
 
-Each icon opens an app from a path on my PC, so most of them won't work on yours until you change the path.
+### Keep your changes
 
-1. Right-click an icon and choose **Edit skin**.
-2. Change the path in the `LeftMouseUpAction` line to your app's `.exe` or shortcut (`.lnk`). Keep the quotes and the `[!HideFadeGroup "Honey"]` part:
+After moving or adding icons, save them into the layout: in **Manage > Layouts**, type `MonitorLayout` or `LaptopLayout` as the name and click **Save**.
 
-   ```ini
-   LeftMouseUpAction=["C:\Path\To\Your\App.exe"][!HideFadeGroup "Honey"]
-   ```
+## Troubleshooting
 
-3. Save the file, then right-click the icon and choose **Refresh skin**.
+- **Clicking an icon does nothing.** The app isn't installed, or it's installed somewhere the icon doesn't know about. Run `install.bat` again to repoint the icons it can find, or edit the icon's `Launch` line.
+- **No icons appear.** Click the sigil. The icons start hidden.
+- **Everything is off-center.** You're on the other layout. Right-click the sigil and pick the right one.
+- **I want my old setup back.** The installer's backups are in `%APPDATA%\Rainmeter\Backups`. Rainmeter's **Layouts** tab also has `@Backup`, which is your setup from before the last layout was loaded.
 
-> 💡 For Microsoft Store apps such as WhatsApp or Xbox, there is no `.exe` path you can use. Create a desktop shortcut to the app and point `LeftMouseUpAction` at that `.lnk` file instead.
+## Credits
 
-## 🎨 Support
-
-If you'd like to customize your own **Honeycomb** icons, I recommend checking out the following YouTube videos:
-
-- [How to Customize Honeycomb Icons](https://www.youtube.com/watch?v=Z1RAFscuFAE&ab_channel=Mork) by Mork 🎬
-
-### ✨ Creating the Hover Effect
-
-To create a hover effect for your icons, you can follow this tutorial:
-
-- [How to Create Hover Effects](https://www.youtube.com/watch?v=4FyO0uf512U&ab_channel=RacTac) by RacTac 🎬
-
-
-## ❓ Troubleshooting
-
-- If you don't see the skins or layout after following the steps, make sure that you've copied the folders into the correct directories and refreshed Rainmeter.
-- If clicking an icon does nothing, its `LeftMouseUpAction` path doesn't exist on your PC. See step 4 above.
-- Check if Rainmeter is up-to-date; older versions may not support certain features.
-
----
+- The honeycomb icon skins are based on APIUM's Honeycomb suite.
+- [How to Customize Honeycomb Icons](https://www.youtube.com/watch?v=Z1RAFscuFAE&ab_channel=Mork) by Mork
+- [How to Create Hover Effects](https://www.youtube.com/watch?v=4FyO0uf512U&ab_channel=RacTac) by RacTac
