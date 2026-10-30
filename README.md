@@ -129,7 +129,7 @@ Replace the image in `@Resources\Images\Wallpapers`, keeping its name, or add a 
 
 ### Change the hover pop
 
-`@Resources\IconPop.inc` grows a hovered icon by 2 pixels per step. The `3` in `Repeat Grow,30,3`, `Repeat Shrink,30,3` and both `Clamp(...,0,3)` is the number of steps, so 3 takes the icon from 90 to 96 pixels. Keep it at 5 or less, since each icon skin only has 5 pixels of room around the icon.
+`@Resources\IconPop.inc` grows a hovered icon by 2 pixels per step. The `2` in `Repeat Grow,15,2`, `Repeat Shrink,15,2` and both `Clamp(...,0,2)` is the number of steps, so 2 takes the icon from 90 to 94 pixels. The `15` is how many milliseconds each step takes. Keep it at 5 or less, since each icon skin only has 5 pixels of room around the icon.
 
 ### Change the volume step
 
