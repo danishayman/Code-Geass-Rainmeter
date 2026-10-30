@@ -38,8 +38,7 @@ To choose the layout yourself, or to only copy the files, run it from a terminal
 - When Rainmeter starts or your PC wakes, the sigil fades in with a glow and the icons fade in from the middle out to both ends.
 - Click the sigil to hide or show the icons.
 - Hover an icon to see its wallpaper, and click it to open the app.
-- A soft red glow behind the sigil pulses with whatever is playing (Spotify, YouTube Music, a browser, a game) and fades away when the sound stops.
-- Right-click the sigil to switch between the monitor and laptop layouts, or to turn the music glow on or off.
+- Right-click the sigil to switch between the monitor and laptop layouts.
 
 | Layout | Made for |
 | --- | --- |
@@ -72,9 +71,8 @@ GurenHoneycomb
 │   │   └── Wallpapers      hover wallpaper images
 │   └── Source              .psd and .xcf files for making new icons
 ├── Geass                   the sigil
-├── Glow                    the glow over the sigil when you hover it
+├── Glow                    the glow behind the sigil when you hover it
 ├── Icons                   one folder per icon
-├── Pulse                   the music glow behind the sigil
 └── Wallpapers              one full-screen hover wallpaper per icon
 ```
 
@@ -125,16 +123,6 @@ Image=steam.jpg
 ```
 
 Replace the image in `@Resources\Images\Wallpapers`, keeping its name, or add a new image and change `Image`. Wallpapers are scaled to fill the screen. Rainmeter loads the wallpaper skin when you hover an icon and unloads it when you move away, fading it in and out as it does.
-
-### Change the music glow
-
-The music glow follows the bass (the beat) plus a little overall loudness. Its settings are at the top of `Pulse\Pulse.ini`:
-
-| Setting | What it does |
-| --- | --- |
-| `MaxAlpha` | How bright the glow gets, from 0 to 255 |
-| `FullBass` | The bass level that gives a full pulse. Lower it if the glow barely moves, raise it if it's always bright. |
-| `FullLoudness` | The overall loudness that gives a full steady glow between beats |
 
 ### Change the startup intro
 
