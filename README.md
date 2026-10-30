@@ -30,6 +30,7 @@ To only copy the files without restarting Rainmeter, run `install.bat -NoLoad` f
 - When Rainmeter starts or your PC wakes, the sigil fades in with its glow, then the glow dims away as the icons fade in from the middle out to both ends.
 - Click the sigil to hide or show the icons.
 - Middle-click the sigil to refresh Rainmeter, which reloads every skin and replays the intro.
+- Right-click the sigil to switch your sound to the next output, and the glow dips and rises to confirm. It switches between the outputs that are turned on in Windows' Sound settings, so turn off any you don't want in the rotation. Ctrl+right-click opens Rainmeter's own menu.
 - Hover an icon and it grows slightly and brings up its wallpaper. Click it to open the app.
 - Scroll the mouse wheel over the sigil to change the system volume. While you scroll, the glow's brightness shows the level: dim when quiet, full at 100%.
 
