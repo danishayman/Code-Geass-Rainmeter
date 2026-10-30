@@ -2,7 +2,7 @@
 
 A Code Geass desktop for [Rainmeter](https://www.rainmeter.net/). Click the Geass sigil to bring up a row of honeycomb app icons, and hover an icon to show that app's wallpaper.
 
-![Preview](assets/cool-gif.gif)
+![Preview](assets/preview.gif)
 
 ## Install
 
@@ -63,14 +63,15 @@ GurenHoneycomb
 ├── @Resources
 │   ├── Icon.inc            shared by icons without a hover wallpaper
 │   ├── IconWallpaper.inc   shared by icons with a hover wallpaper
+│   ├── Wallpaper.inc       shared by every hover wallpaper
 │   ├── Images
 │   │   ├── Icons           one .png per icon
-│   │   └── Wallpapers      hover wallpapers
+│   │   └── Wallpapers      hover wallpaper images
 │   └── Source              .psd and .xcf files for making new icons
 ├── Geass                   the sigil
 ├── Glow                    the glow behind the sigil when you hover it
 ├── Icons                   one folder per icon
-└── Wallpaper               the full-screen hover wallpaper, shared by every icon
+└── Wallpapers              one full-screen hover wallpaper per icon
 ```
 
 ### Change what an icon opens
@@ -82,7 +83,7 @@ Right-click the icon and choose **Edit skin**. Every icon is a few lines like th
 Icon=steam
 Launch=["steam://open/main"]
 StartMenuName=Steam
-Wallpaper=steam.jpg
+Wallpaper=Steam
 @Include=#@#IconWallpaper.inc
 ```
 
@@ -91,7 +92,7 @@ Wallpaper=steam.jpg
 | `Icon` | Image in `@Resources\Images\Icons`, without `.png` |
 | `Launch` | What a click runs: a program (`["chrome.exe"]`), a full path, a link (`["https://www.youtube.com"]`, `["steam://rungameid/730"]`), a Start Menu app (`["shell:AppsFolder\<AppID>"]`) or a Rainmeter bang (`[!Manage]`) |
 | `StartMenuName` | Optional. The app's name in the Start Menu. The installer uses it to find the app when `Launch` doesn't work on that PC. |
-| `Wallpaper` | Optional. Image in `@Resources\Images\Wallpapers` shown while hovering. Icons with a wallpaper include `IconWallpaper.inc`, and icons without one include `Icon.inc`. |
+| `Wallpaper` | Optional. The wallpaper skin in `GurenHoneycomb\Wallpapers` shown while hovering. Icons with a wallpaper include `IconWallpaper.inc`, and icons without one include `Icon.inc`. |
 
 Save the file, then right-click the icon and choose **Refresh skin**.
 
@@ -105,14 +106,21 @@ Get-StartApps | Where-Object Name -like '*spotify*'
 
 1. Copy an icon's folder in `GurenHoneycomb\Icons` (for example `Steam` to `MyApp`) and rename the `.ini` inside to `MyApp.ini`.
 2. Put a square `.png` in `@Resources\Images\Icons`. `@Resources\Source\template.psd` is the honeycomb template.
-3. Edit `Icon`, `Launch` and `Wallpaper` in `MyApp.ini`. Remove the `Wallpaper` line and include `Icon.inc` instead if it has no wallpaper.
-4. In Rainmeter's **Manage** window, click **Refresh all**, load `Icons\MyApp`, and set its position in the X and Y boxes.
+3. Edit `Icon` and `Launch` in `MyApp.ini`. If it has no wallpaper, remove the `Wallpaper` line and include `Icon.inc` instead.
+4. For a wallpaper, copy a folder in `GurenHoneycomb\Wallpapers` the same way, put the image in `@Resources\Images\Wallpapers`, set `Image` to its file name, and set the icon's `Wallpaper` to the new folder's name.
+5. In Rainmeter's **Manage** window, click **Refresh all**, load `Icons\MyApp`, and set its position in the X and Y boxes.
 
 ### Change a wallpaper
 
-Replace the image in `@Resources\Images\Wallpapers`, keeping its name, or add a new image and change the icon's `Wallpaper` line. Wallpapers are scaled to fill the screen.
+Each wallpaper is a short skin in `GurenHoneycomb\Wallpapers`:
 
-The wallpaper fades in as the sigil fades out, over 800 milliseconds. To change the speed, set `FadeDuration` to the same number in `Wallpaper\Wallpaper.ini` and `Geass\Geass.ini`.
+```ini
+[Variables]
+Image=steam.jpg
+@Include=#@#Wallpaper.inc
+```
+
+Replace the image in `@Resources\Images\Wallpapers`, keeping its name, or add a new image and change `Image`. Wallpapers are scaled to fill the screen. Rainmeter loads the wallpaper skin when you hover an icon and unloads it when you move away, fading it in and out as it does.
 
 ### Keep your changes
 
