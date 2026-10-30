@@ -7,6 +7,8 @@
 [Rainmeter]
 Update=-1
 Group=Honey
+OnRefreshAction=[!Hide][!CommandMeasure Intro "Execute 1"]
+OnWakeAction=[!Hide][!CommandMeasure Intro "Execute 1"]
 
 [Icon]
 Meter=Image
@@ -15,3 +17,4 @@ H=90
 LeftMouseUpAction=#Launch#[!HideFadeGroup "Honey"]
 MouseOverAction=[!ActivateConfig "GurenHoneycomb\Wallpapers\#Wallpaper#"][!HideGroup "Geass"]
 MouseLeaveAction=[!DeactivateConfig "GurenHoneycomb\Wallpapers\#Wallpaper#"][!ShowFadeGroup "Geass"]
+@IncludeIntro=#@#IconIntro.inc

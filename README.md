@@ -35,7 +35,8 @@ To choose the layout yourself, or to only copy the files, run it from a terminal
 
 ## Using it
 
-- Click the sigil to show or hide the icons. They start hidden.
+- When Rainmeter starts or your PC wakes, the sigil fades in with a glow and the icons fade in from the middle out to both ends.
+- Click the sigil to hide or show the icons.
 - Hover an icon to see its wallpaper, and click it to open the app.
 - Right-click the sigil to switch between the monitor and laptop layouts.
 
@@ -63,6 +64,7 @@ GurenHoneycomb
 ├── @Resources
 │   ├── Icon.inc            shared by icons without a hover wallpaper
 │   ├── IconWallpaper.inc   shared by icons with a hover wallpaper
+│   ├── IconIntro.inc       the startup fade-in shared by every icon
 │   ├── Wallpaper.inc       shared by every hover wallpaper
 │   ├── Images
 │   │   ├── Icons           one .png per icon
@@ -122,6 +124,11 @@ Image=steam.jpg
 
 Replace the image in `@Resources\Images\Wallpapers`, keeping its name, or add a new image and change `Image`. Wallpapers are scaled to fill the screen. Rainmeter loads the wallpaper skin when you hover an icon and unloads it when you move away, fading it in and out as it does.
 
+### Change the startup intro
+
+- **Sigil:** the `[Intro]` section of `Geass\Geass.ini`. Each `Repeat FadeIn,40,N` step takes 40 milliseconds, and `Wait 1300` is how long the glow stays on.
+- **Icons:** `@Resources\IconIntro.inc`. Each icon waits `625` milliseconds plus `1.5` milliseconds for every pixel between its center and the middle of the screen. With 100 pixels between icons, each pair fades in 150 milliseconds after the pair inside it.
+
 ### Keep your changes
 
 After moving or adding icons, save them into the layout: in **Manage > Layouts**, type `MonitorLayout` or `LaptopLayout` as the name and click **Save**.
@@ -129,7 +136,7 @@ After moving or adding icons, save them into the layout: in **Manage > Layouts**
 ## Troubleshooting
 
 - **Clicking an icon does nothing.** The app isn't installed, or it's installed somewhere the icon doesn't know about. Run `install.bat` again to repoint the icons it can find, or edit the icon's `Launch` line.
-- **No icons appear.** Click the sigil. The icons start hidden.
+- **No icons appear.** They fade in about a second after the sigil. If they still don't show, you probably hid them, so click the sigil.
 - **Everything is off-center.** You're on the other layout. Right-click the sigil and pick the right one.
 - **I want my old setup back.** The installer's backups are in `%APPDATA%\Rainmeter\Backups`. Rainmeter's **Layouts** tab also has `@Backup`, which is your setup from before the last layout was loaded.
 

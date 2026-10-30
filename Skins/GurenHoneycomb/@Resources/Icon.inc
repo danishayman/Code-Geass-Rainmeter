@@ -6,9 +6,12 @@
 [Rainmeter]
 Update=-1
 Group=Honey
+OnRefreshAction=[!Hide][!CommandMeasure Intro "Execute 1"]
+OnWakeAction=[!Hide][!CommandMeasure Intro "Execute 1"]
 
 [Icon]
 Meter=Image
 ImageName=#@#Images\Icons\#Icon#.png
 H=90
 LeftMouseUpAction=#Launch#[!HideFadeGroup "Honey"]
+@IncludeIntro=#@#IconIntro.inc
