@@ -38,13 +38,13 @@ The layout works out every position from your screen size, so the sigil and icon
 
 ## Icons
 
-The layout shows this row, left to right: Folder (opens Documents), Telegram, VS Code, YouTube (opens the YouTube Music app), Discord, Chrome, Steam, Epic Games, Riot Client, Xbox.
+The layout shows this row, left to right: Claude, WhatsApp, VS Code, YouTube (opens the YouTube Music app), Discord, Chrome, Steam, Epic Games, Riot Client, Xbox.
 
 More icons are ready to load from the **Skins** tab under `GurenHoneycomb\Icons`:
 
 | Group | Icons |
 | --- | --- |
-| Apps | Brave, WhatsApp, Office (opens Word), Excel, PowerPoint, Notepad, Visual Studio, Spotify, Rainmeter (opens Manage), Settings |
+| Apps | Folder (opens Documents), Telegram, Brave, Office (opens Word), Excel, PowerPoint, Notepad, Visual Studio, Spotify, Rainmeter (opens Manage), Settings |
 | Games | Valorant, Legends of Runeterra, Minecraft, CS2, GTA V, Skyrim, osu!, Game (a blank game icon that opens your Steam library) |
 | Power | Double-click to sleep, middle double-click to shut down, right double-click to restart |
 
