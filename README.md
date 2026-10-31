@@ -57,6 +57,7 @@ GurenHoneycomb
 │   ├── IconWallpaper.inc   shared by icons with a hover wallpaper
 │   ├── IconIntro.inc       the startup fade-in shared by every icon
 │   ├── IconPop.inc         the hover pop shared by every icon
+│   ├── Focus.ps1           brings back an app that's already open (used by Discord)
 │   ├── Wallpaper.inc       shared by every hover wallpaper
 │   ├── Images
 │   │   ├── Icons           one .png per icon
@@ -89,6 +90,8 @@ Wallpaper=Steam
 | `Wallpaper` | Optional. The wallpaper skin in `GurenHoneycomb\Wallpapers` shown while hovering. Icons with a wallpaper include `IconWallpaper.inc`, and icons without one include `Icon.inc`. |
 
 Save the file, then right-click the icon and choose **Refresh skin**.
+
+Some apps, like Discord, ignore a second launch while they're minimized, so clicking the icon seems to do nothing. `Icons\Discord\Discord.ini` shows the fix: the click runs `@Resources\Focus.ps1`, which brings the app's window back, or starts the app if it isn't running. Copy its `Launch` line and `[Focus]` section into another icon and change the process name and launch target.
 
 To find a Start Menu app's AppID, run this in PowerShell (swap in your app's name):
 
