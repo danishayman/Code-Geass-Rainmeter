@@ -31,7 +31,7 @@ To only copy the files without restarting Rainmeter, run `install.bat -NoLoad` f
 - Click the sigil to hide or show the icons.
 - Middle-click the sigil for a menu to lock, sleep, restart or shut down the PC.
 - Double right-click the sigil to switch your sound to the next output, and the glow dips and rises to confirm. It switches between the outputs that are turned on in Windows' Sound settings, so turn off any you don't want in the rotation. Ctrl+right-click opens Rainmeter's own menu.
-- Hover an icon and it grows slightly and brings up its wallpaper. Click it to open the app.
+- Hover an icon and it grows slightly and brings up its wallpaper. Click it to open the app: the icon flashes bright, then the row fades away.
 - Scroll the mouse wheel over the sigil to change the system volume. While you scroll, the glow's brightness shows the level: dim when quiet, full at 100%.
 
 The layout works out every position from your screen size, so the sigil and icons sit in the middle of any screen.
@@ -57,6 +57,7 @@ GurenHoneycomb
 │   ├── IconWallpaper.inc   shared by icons with a hover wallpaper
 │   ├── IconIntro.inc       the startup fade-in shared by every icon
 │   ├── IconPop.inc         the hover pop shared by every icon
+│   ├── IconFlash.inc       the flash when an icon is clicked
 │   ├── Focus.ps1           brings back an app that's already open (used by Discord)
 │   ├── Wallpaper.inc       shared by every hover wallpaper
 │   ├── Images

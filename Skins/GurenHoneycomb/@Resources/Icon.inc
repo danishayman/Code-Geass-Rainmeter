@@ -18,8 +18,11 @@ X=(5-#Pop#)
 Y=(5-#Pop#)
 H=(90+2*#Pop#)
 DynamicVariables=1
-LeftMouseUpAction=#Launch#[!HideFadeGroup "Honey"]
+; Brightens the icon while it flashes after a click (see IconFlash.inc).
+ColorMatrix5=#Flash#;#Flash#;#Flash#;0;1
+LeftMouseUpAction=#Launch#[!CommandMeasure Flash "Execute 1"]
 MouseOverAction=[!CommandMeasure Pop "Stop 2"][!CommandMeasure Pop "Execute 1"]
 MouseLeaveAction=[!CommandMeasure Pop "Stop 1"][!CommandMeasure Pop "Execute 2"]
 @IncludeIntro=#@#IconIntro.inc
 @IncludePop=#@#IconPop.inc
+@IncludeFlash=#@#IconFlash.inc
