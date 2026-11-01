@@ -28,7 +28,7 @@ To only copy the files without restarting Rainmeter, run `install.bat -NoLoad` f
 ## Using it
 
 - When Rainmeter starts or your PC wakes, the sigil fades in with its glow, then the glow dims away as the icons fade in from the middle out to both ends.
-- Click the sigil to hide or show the icons.
+- Click the sigil to hide or show the icons. If you don't use them for 15 seconds, they fade away on their own. Hovering an icon keeps them up.
 - Middle-click the sigil for a menu to lock, sleep, restart or shut down the PC.
 - Right-click the sigil to mute or unmute. Muting makes the glow dip briefly (fade down and straight back up) as a signal; otherwise the glow stays as it is. A single right-click waits 0.4 seconds to make sure it isn't a double-click.
 - Double right-click the sigil to switch your sound to the next output, and the glow dips and rises to confirm. It switches between the outputs that are turned on in Windows' Sound settings, so turn off any you don't want in the rotation. Ctrl+right-click opens Rainmeter's own menu.
@@ -138,6 +138,10 @@ Replace the image in `@Resources\Images\Wallpapers`, keeping its name, or add a 
 
 `@Resources\IconPop.inc` grows a hovered icon by 2 pixels per step. The `2` in `Repeat Grow,15,2`, `Repeat Shrink,15,2` and both `Clamp(...,0,2)` is the number of steps, so 2 takes the icon from 90 to 94 pixels. The `15` is how many milliseconds each step takes. Keep it at 5 or less, since each icon skin only has 5 pixels of room around the icon.
 
+### Change how long the icons stay
+
+`AutoHideDelay` in `[Variables]` in `Geass\Geass.ini` is how long the icons stay without being used before they fade away, in milliseconds. The default is 15000 (15 seconds).
+
 ### Change the volume step
 
 Each scroll-wheel notch over the sigil changes the volume by `VolumeStep` percent, set in `[Variables]` in `Geass\Geass.ini`. The default is 2, the same as Windows' volume keys.
@@ -149,7 +153,7 @@ After moving or adding icons, save them into the layout: in **Manage > Layouts**
 ## Troubleshooting
 
 - **Clicking an icon does nothing.** The app isn't installed, or it's installed somewhere the icon doesn't know about. Run `install.bat` again to repoint the icons it can find, or edit the icon's `Launch` line.
-- **No icons appear.** They fade in about a second after the sigil. If they still don't show, you probably hid them, so click the sigil.
+- **No icons appear.** They fade in about a second after the sigil and fade away again after 15 seconds without use. Click the sigil to bring them back.
 - **The sigil or icons are in the wrong place.** Load `CodeGeass` again from **Manage > Layouts**. If you saved over it, run `install.bat` to get the original back.
 - **I want my old setup back.** The installer's backups are in `%APPDATA%\Rainmeter\Backups`. Rainmeter's **Layouts** tab also has `@Backup`, which is your setup from before the last layout was loaded.
 

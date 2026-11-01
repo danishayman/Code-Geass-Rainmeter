@@ -22,8 +22,8 @@ DynamicVariables=1
 ; Brightens the icon while it flashes after a click (see IconFlash.inc).
 ColorMatrix5=#Flash#;#Flash#;#Flash#;0;1
 LeftMouseUpAction=#Launch#[!CommandMeasure Flash "Execute 1"]
-MouseOverAction=[!CommandMeasure Pop "Stop 2"][!CommandMeasure Pop "Execute 1"][!ActivateConfig "GurenHoneycomb\Wallpapers\#Wallpaper#"][!HideGroup "Geass"]
-MouseLeaveAction=[!CommandMeasure Pop "Stop 1"][!CommandMeasure Pop "Execute 2"][!DeactivateConfig "GurenHoneycomb\Wallpapers\#Wallpaper#"][!ShowFadeGroup "Geass"]
+MouseOverAction=[!CommandMeasure AutoHide "Stop 1" "GurenHoneycomb\Geass"][!CommandMeasure Pop "Stop 2"][!CommandMeasure Pop "Execute 1"][!ActivateConfig "GurenHoneycomb\Wallpapers\#Wallpaper#"][!HideGroup "Geass"]
+MouseLeaveAction=[!CommandMeasure AutoHide "Stop 1" "GurenHoneycomb\Geass"][!CommandMeasure AutoHide "Execute 1" "GurenHoneycomb\Geass"][!CommandMeasure Pop "Stop 1"][!CommandMeasure Pop "Execute 2"][!DeactivateConfig "GurenHoneycomb\Wallpapers\#Wallpaper#"][!ShowFadeGroup "Geass"]
 @IncludeIntro=#@#IconIntro.inc
 @IncludePop=#@#IconPop.inc
 @IncludeFlash=#@#IconFlash.inc
