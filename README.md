@@ -8,179 +8,44 @@ A Code Geass desktop for [Rainmeter](https://www.rainmeter.net/). Click the Geas
 
 You need [Rainmeter](https://www.rainmeter.net/) 4.5 or later.
 
-### Rainmeter package (easiest)
-
-1. Download [CodeGeass.rmskin](https://github.com/danishayman/Code-Geass-Rainmeter/releases/latest/download/CodeGeass.rmskin) from the [latest release](https://github.com/danishayman/Code-Geass-Rainmeter/releases/latest).
+1. Download **CodeGeass.rmskin** from the [Releases page](https://github.com/danishayman/Code-Geass-Rainmeter/releases/latest).
 2. Double-click it. Rainmeter's skin installer opens.
 3. Leave **Apply included layout** ticked and click **Install**.
 
-Rainmeter copies the skins and the `CodeGeass` layout into its folders and loads the layout. If you already have a copy of `GurenHoneycomb`, it's moved to `Skins\@Backup` first, and the setup you had before is saved as the `@Backup` layout.
+That's it: the sigil and icons appear in the middle of your screen. Your previous setup is saved as the `@Backup` layout in Rainmeter, so you can always go back.
 
-The icons open each app from where it normally installs. If one of your apps is installed somewhere else, its icon won't open it: run the install script below, which fixes that, or edit the icon's `Launch` line (see [Change what an icon opens](#change-what-an-icon-opens)).
+## How to use
 
-### Install script
+| Do this | To |
+| --- | --- |
+| Click the sigil | Show or hide the icons |
+| Hover an icon | Show that app's wallpaper |
+| Click an icon | Open the app |
+| Scroll over the sigil | Change the volume |
+| Right-click the sigil | Mute or unmute |
+| Double right-click the sigil | Switch to the next sound output |
+| Middle-click the sigil | Lock, sleep, restart or shut down |
+| Ctrl+right-click the sigil | Open Rainmeter's menu |
 
-The script installs the same files, and also points each icon at its app if the app is installed somewhere else on your PC.
-
-1. Download this repository (**Code > Download ZIP**) and extract it.
-2. Double-click `install.bat`.
-
-The script:
-
-- backs up any earlier copy of these skins and layouts to `%APPDATA%\Rainmeter\Backups`
-- copies the skins and the `CodeGeass` layout into Rainmeter's folders
-- checks what each icon opens, points it at the app if it's installed somewhere else on your PC, and lists any apps it can't find
-- restarts Rainmeter and loads the layout
-
-To only copy the files without restarting Rainmeter, run `install.bat -NoLoad` from a terminal in the extracted folder.
-
-### Manual install
-
-1. Copy `Skins\GurenHoneycomb` into your Rainmeter skins folder. That's usually `Documents\Rainmeter\Skins`, or `OneDrive\Documents\Rainmeter\Skins` if your Documents folder syncs with OneDrive.
-2. Copy `Layouts\CodeGeass` into `%APPDATA%\Rainmeter\Layouts`.
-3. In Rainmeter's **Manage** window, open the **Layouts** tab, pick `CodeGeass` and click **Load**.
-
-## Using it
-
-- When Rainmeter starts or your PC wakes, the sigil fades in with its glow, then the glow dims away as the icons fade in from the middle out to both ends.
-- Click the sigil to hide or show the icons. If you don't use them for 10 seconds, they fade away on their own. Hovering an icon keeps them up.
-- Middle-click the sigil for a menu to lock, sleep, restart or shut down the PC.
-- Right-click the sigil to mute or unmute. Muting makes the glow dip briefly (fade down and straight back up) as a signal; otherwise the glow stays as it is. A single right-click waits 0.4 seconds to make sure it isn't a double-click.
-- Double right-click the sigil to switch your sound to the next output, and the glow dips and rises to confirm. It switches between the outputs that are turned on in Windows' Sound settings, so turn off any you don't want in the rotation. Ctrl+right-click opens Rainmeter's own menu.
-- Hover an icon and it grows slightly and brings up its wallpaper. Click it to open the app: the icon flashes bright, then the row fades away.
-- Scroll the mouse wheel over the sigil to change the system volume. While you scroll, the glow's brightness shows the level: dim when quiet, full at 100%.
-
-The layout works out every position from your screen size, so the sigil and icons sit in the middle of any screen.
+The icons fade away after 10 seconds without use. Click the sigil to bring them back.
 
 ## Icons
 
-The layout shows this row, left to right: Claude, WhatsApp, VS Code, YouTube (opens the YouTube Music app), Discord, Chrome, Steam, Epic Games, Xbox, Nuvio.
+The row has Claude, WhatsApp, VS Code, YouTube Music, Discord, Chrome, Steam, Epic Games, Xbox and Nuvio.
 
-More icons are ready to load from the **Skins** tab under `GurenHoneycomb\Icons`:
+More icons come with it, including Telegram, Spotify, Brave, Office, Valorant, Minecraft, CS2 and GTA V. To add one, open Rainmeter's **Manage** window, find it under `GurenHoneycomb\Icons`, click **Load**, and drag it where you want.
 
-| Group | Icons |
-| --- | --- |
-| Apps | Folder (opens Documents), Telegram, Brave, Office (opens Word), Excel, PowerPoint, Notepad, Visual Studio, Spotify, Rainmeter (opens Manage), Settings |
-| Games | Riot Client, Valorant, Legends of Runeterra, Minecraft, CS2, GTA V, Skyrim, osu!, Game (a blank game icon that opens your Steam library) |
-| Power | Double-click to sleep, middle double-click to shut down, right double-click to restart |
+## Customize
 
-## Customizing
-
-```
-GurenHoneycomb
-├── @Resources
-│   ├── Icon.inc            shared by icons without a hover wallpaper
-│   ├── IconWallpaper.inc   shared by icons with a hover wallpaper
-│   ├── IconIntro.inc       the startup fade-in shared by every icon
-│   ├── IconPop.inc         the hover pop shared by every icon
-│   ├── IconFlash.inc       the flash when an icon is clicked
-│   ├── Focus.ps1           brings back an app that's already open (used by Discord)
-│   ├── Wallpaper.inc       shared by every hover wallpaper
-│   ├── Images
-│   │   ├── Icons           one .png per icon
-│   │   └── Wallpapers      hover wallpaper images
-│   └── Source              .psd and .xcf files for making new icons
-├── Geass                   the sigil
-├── Glow                    the glow behind the sigil when you hover it
-├── Icons                   one folder per icon
-└── Wallpapers              one full-screen hover wallpaper per icon
-```
-
-### Change what an icon opens
-
-Right-click the icon and choose **Edit skin**. Every icon is a few lines like this:
-
-```ini
-[Variables]
-Icon=steam
-Launch=["steam://open/main"]
-StartMenuName=Steam
-Wallpaper=Steam
-@Include=#@#IconWallpaper.inc
-```
-
-| Line | Meaning |
-| --- | --- |
-| `Icon` | Image in `@Resources\Images\Icons`, without `.png` |
-| `Launch` | What a click runs: a program (`["chrome.exe"]`), a full path, a link (`["https://www.youtube.com"]`, `["steam://rungameid/730"]`), a Start Menu app (`["shell:AppsFolder\<AppID>"]`) or a Rainmeter bang (`[!Manage]`) |
-| `StartMenuName` | Optional. The app's name in the Start Menu. The installer uses it to find the app when `Launch` doesn't work on that PC. |
-| `Wallpaper` | Optional. The wallpaper skin in `GurenHoneycomb\Wallpapers` shown while hovering. Icons with a wallpaper include `IconWallpaper.inc`, and icons without one include `Icon.inc`. |
-
-Save the file, then right-click the icon and choose **Refresh skin**.
-
-Some apps, like Discord, ignore a second launch while they're minimized, so clicking the icon seems to do nothing. `Icons\Discord\Discord.ini` shows the fix: the click runs `@Resources\Focus.ps1`, which brings the app's window back, or starts the app if it isn't running. The Nuvio icon works the same way. Copy its `Launch` line and `[Focus]` section into another icon and change the process name and launch target.
-
-To find a Start Menu app's AppID, run this in PowerShell (swap in your app's name):
-
-```powershell
-Get-StartApps | Where-Object Name -like '*spotify*'
-```
-
-### Add an icon
-
-1. Copy an icon's folder in `GurenHoneycomb\Icons` (for example `Steam` to `MyApp`) and rename the `.ini` inside to `MyApp.ini`.
-2. Put a square `.png` in `@Resources\Images\Icons`. `@Resources\Source\template.psd` is the honeycomb template. To match the other icons, colour the band along its bottom edges in the logo's accent colour and keep the template's soft shadow along the top of that band, so it looks like the side of a solid block.
-3. Edit `Icon` and `Launch` in `MyApp.ini`. If it has no wallpaper, remove the `Wallpaper` line and include `Icon.inc` instead.
-4. For a wallpaper, copy a folder in `GurenHoneycomb\Wallpapers` the same way, put the image in `@Resources\Images\Wallpapers`, set `Image` to its file name, and set the icon's `Wallpaper` to the new folder's name.
-5. In Rainmeter's **Manage** window, click **Refresh all** and load `Icons\MyApp`.
-6. To keep it centered like the others, click **Edit settings** and give its section a position worked out the same way. For example, this puts it just after Nuvio:
-
-   ```ini
-   WindowX=(#SCREENAREAWIDTH#/2+500)
-   WindowY=(#SCREENAREAHEIGHT#/2+155)
-   ```
-
-   Save the file and click **Refresh all**.
-
-### Change a wallpaper
-
-Each wallpaper is a short skin in `GurenHoneycomb\Wallpapers`:
-
-```ini
-[Variables]
-Image=steam.jpg
-@Include=#@#Wallpaper.inc
-```
-
-Replace the image in `@Resources\Images\Wallpapers`, keeping its name, or add a new image and change `Image`. Wallpapers are scaled to fill the screen. Rainmeter loads the wallpaper skin when you hover an icon and unloads it when you move away, fading it in and out as it does.
-
-### Change the startup intro
-
-- **Sigil:** the `[Intro]` section of `Geass\Geass.ini`. `Repeat FadeIn,40,25` fades the sigil and its glow in together, in 25 steps of 40 milliseconds. `Repeat GlowDim,40,10` then dims the glow away in 10 steps.
-- **Icons:** `@Resources\IconIntro.inc`. Each icon waits `625` milliseconds plus `1.5` milliseconds for every pixel between its center and the middle of the screen. With 100 pixels between icons, each pair fades in 150 milliseconds after the pair inside it.
-
-### Change the hover pop
-
-`@Resources\IconPop.inc` grows a hovered icon by 2 pixels per step. The `2` in `Repeat Grow,15,2`, `Repeat Shrink,15,2` and both `Clamp(...,0,2)` is the number of steps, so 2 takes the icon from 90 to 94 pixels. The `15` is how many milliseconds each step takes. Keep it at 5 or less, since each icon skin only has 5 pixels of room around the icon.
-
-### Change how long the icons stay
-
-`AutoHideDelay` in `[Variables]` in `Geass\Geass.ini` is how long the icons stay without being used before they fade away, in milliseconds. The default is 10000 (10 seconds).
-
-### Change the volume step
-
-Each scroll-wheel notch over the sigil changes the volume by `VolumeStep` percent, set in `[Variables]` in `Geass\Geass.ini`. The default is 2, the same as Windows' volume keys.
-
-### Keep your changes
-
-After moving or adding icons, save them into the layout: in **Manage > Layouts**, type `CodeGeass` as the name and click **Save**. Skins you drag or place with the X and Y boxes get fixed positions, while the rest stay centered on any screen.
-
-### Build the package
-
-`build-rmskin.ps1` packs `Skins\GurenHoneycomb`, the `CodeGeass` layout and the installer's header image (`assets\RMSKIN.bmp`) into `dist\CodeGeass.rmskin`. Run it from PowerShell in the repository folder, with the version shown in the installer:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\build-rmskin.ps1 -Version 1.0.0
-```
-
-To publish it, attach `dist\CodeGeass.rmskin` to a new release on GitHub. Keep the file name the same, so the download link under **Install** always gets the newest release's package.
+- **Change what an icon opens:** right-click it, choose **Edit skin**, and change the `Launch` line, for example `Launch=["chrome.exe"]` or `Launch=["https://www.youtube.com"]`. Save, then right-click the icon and choose **Refresh skin**.
+- **Change a wallpaper:** replace its image in `Documents\Rainmeter\Skins\GurenHoneycomb\@Resources\Images\Wallpapers`, keeping the same file name.
+- **Keep your changes:** in **Manage > Layouts**, type `CodeGeass` as the name and click **Save**.
 
 ## Troubleshooting
 
-- **Clicking an icon does nothing.** The app isn't installed, or it's installed somewhere the icon doesn't know about. Run `install.bat` (again, or for the first time if you installed the `.rmskin`) to repoint the icons it can find, or edit the icon's `Launch` line.
-- **No icons appear.** They fade in about a second after the sigil and fade away again after 10 seconds without use. Click the sigil to bring them back.
-- **The sigil or icons are in the wrong place.** Load `CodeGeass` again from **Manage > Layouts**. If you saved over it, run `install.bat` to get the original back.
-- **I want my old setup back.** The installer's backups are in `%APPDATA%\Rainmeter\Backups`. Rainmeter's **Layouts** tab also has `@Backup`, which is your setup from before the last layout was loaded.
+- **Clicking an icon does nothing.** The app isn't installed, or it's installed somewhere unusual. Change the icon's `Launch` line (see Customize).
+- **The sigil or icons are in the wrong place.** In **Manage > Layouts**, pick `CodeGeass` and click **Load**.
+- **I want my old setup back.** In **Manage > Layouts**, pick `@Backup` and click **Load**.
 
 ## Credits
 
