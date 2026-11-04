@@ -39,14 +39,14 @@ The layout works out every position from your screen size, so the sigil and icon
 
 ## Icons
 
-The layout shows this row, left to right: Claude, WhatsApp, VS Code, YouTube (opens the YouTube Music app), Discord, Chrome, Steam, Epic Games, Riot Client, Xbox.
+The layout shows this row, left to right: Claude, WhatsApp, VS Code, YouTube (opens the YouTube Music app), Discord, Chrome, Steam, Epic Games, Xbox, Nuvio.
 
 More icons are ready to load from the **Skins** tab under `GurenHoneycomb\Icons`:
 
 | Group | Icons |
 | --- | --- |
 | Apps | Folder (opens Documents), Telegram, Brave, Office (opens Word), Excel, PowerPoint, Notepad, Visual Studio, Spotify, Rainmeter (opens Manage), Settings |
-| Games | Valorant, Legends of Runeterra, Minecraft, CS2, GTA V, Skyrim, osu!, Game (a blank game icon that opens your Steam library) |
+| Games | Riot Client, Valorant, Legends of Runeterra, Minecraft, CS2, GTA V, Skyrim, osu!, Game (a blank game icon that opens your Steam library) |
 | Power | Double-click to sleep, middle double-click to shut down, right double-click to restart |
 
 ## Customizing
@@ -93,7 +93,7 @@ Wallpaper=Steam
 
 Save the file, then right-click the icon and choose **Refresh skin**.
 
-Some apps, like Discord, ignore a second launch while they're minimized, so clicking the icon seems to do nothing. `Icons\Discord\Discord.ini` shows the fix: the click runs `@Resources\Focus.ps1`, which brings the app's window back, or starts the app if it isn't running. Copy its `Launch` line and `[Focus]` section into another icon and change the process name and launch target.
+Some apps, like Discord, ignore a second launch while they're minimized, so clicking the icon seems to do nothing. `Icons\Discord\Discord.ini` shows the fix: the click runs `@Resources\Focus.ps1`, which brings the app's window back, or starts the app if it isn't running. The Nuvio icon works the same way. Copy its `Launch` line and `[Focus]` section into another icon and change the process name and launch target.
 
 To find a Start Menu app's AppID, run this in PowerShell (swap in your app's name):
 
@@ -108,7 +108,7 @@ Get-StartApps | Where-Object Name -like '*spotify*'
 3. Edit `Icon` and `Launch` in `MyApp.ini`. If it has no wallpaper, remove the `Wallpaper` line and include `Icon.inc` instead.
 4. For a wallpaper, copy a folder in `GurenHoneycomb\Wallpapers` the same way, put the image in `@Resources\Images\Wallpapers`, set `Image` to its file name, and set the icon's `Wallpaper` to the new folder's name.
 5. In Rainmeter's **Manage** window, click **Refresh all** and load `Icons\MyApp`.
-6. To keep it centered like the others, click **Edit settings** and give its section a position worked out the same way. For example, this puts it just after Xbox:
+6. To keep it centered like the others, click **Edit settings** and give its section a position worked out the same way. For example, this puts it just after Nuvio:
 
    ```ini
    WindowX=(#SCREENAREAWIDTH#/2+500)
