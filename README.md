@@ -104,7 +104,7 @@ Get-StartApps | Where-Object Name -like '*spotify*'
 ### Add an icon
 
 1. Copy an icon's folder in `GurenHoneycomb\Icons` (for example `Steam` to `MyApp`) and rename the `.ini` inside to `MyApp.ini`.
-2. Put a square `.png` in `@Resources\Images\Icons`. `@Resources\Source\template.psd` is the honeycomb template.
+2. Put a square `.png` in `@Resources\Images\Icons`. `@Resources\Source\template.psd` is the honeycomb template. To match the other icons, colour the band along its bottom edges in the face's own colour, darker for a bright face or lighter for a dark one, so it looks like the side of a solid block.
 3. Edit `Icon` and `Launch` in `MyApp.ini`. If it has no wallpaper, remove the `Wallpaper` line and include `Icon.inc` instead.
 4. For a wallpaper, copy a folder in `GurenHoneycomb\Wallpapers` the same way, put the image in `@Resources\Images\Wallpapers`, set `Image` to its file name, and set the icon's `Wallpaper` to the new folder's name.
 5. In Rainmeter's **Manage** window, click **Refresh all** and load `Icons\MyApp`.
