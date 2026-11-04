@@ -6,11 +6,26 @@ A Code Geass desktop for [Rainmeter](https://www.rainmeter.net/). Click the Geas
 
 ## Install
 
-1. Install [Rainmeter](https://www.rainmeter.net/) (tested with 4.5).
-2. Download this repository (**Code > Download ZIP**) and extract it.
-3. Double-click `install.bat`.
+You need [Rainmeter](https://www.rainmeter.net/) 4.5 or later.
 
-The installer:
+### Rainmeter package (easiest)
+
+1. Download [CodeGeass.rmskin](https://github.com/danishayman/Code-Geass-Rainmeter/releases/latest/download/CodeGeass.rmskin) from the [latest release](https://github.com/danishayman/Code-Geass-Rainmeter/releases/latest).
+2. Double-click it. Rainmeter's skin installer opens.
+3. Leave **Apply included layout** ticked and click **Install**.
+
+Rainmeter copies the skins and the `CodeGeass` layout into its folders and loads the layout. If you already have a copy of `GurenHoneycomb`, it's moved to `Skins\@Backup` first, and the setup you had before is saved as the `@Backup` layout.
+
+The icons open each app from where it normally installs. If one of your apps is installed somewhere else, its icon won't open it: run the install script below, which fixes that, or edit the icon's `Launch` line (see [Change what an icon opens](#change-what-an-icon-opens)).
+
+### Install script
+
+The script installs the same files, and also points each icon at its app if the app is installed somewhere else on your PC.
+
+1. Download this repository (**Code > Download ZIP**) and extract it.
+2. Double-click `install.bat`.
+
+The script:
 
 - backs up any earlier copy of these skins and layouts to `%APPDATA%\Rainmeter\Backups`
 - copies the skins and the `CodeGeass` layout into Rainmeter's folders
@@ -150,9 +165,19 @@ Each scroll-wheel notch over the sigil changes the volume by `VolumeStep` percen
 
 After moving or adding icons, save them into the layout: in **Manage > Layouts**, type `CodeGeass` as the name and click **Save**. Skins you drag or place with the X and Y boxes get fixed positions, while the rest stay centered on any screen.
 
+### Build the package
+
+`build-rmskin.ps1` packs `Skins\GurenHoneycomb`, the `CodeGeass` layout and the installer's header image (`assets\RMSKIN.bmp`) into `dist\CodeGeass.rmskin`. Run it from PowerShell in the repository folder, with the version shown in the installer:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\build-rmskin.ps1 -Version 1.0.0
+```
+
+To publish it, attach `dist\CodeGeass.rmskin` to a new release on GitHub. Keep the file name the same, so the download link under **Install** always gets the newest release's package.
+
 ## Troubleshooting
 
-- **Clicking an icon does nothing.** The app isn't installed, or it's installed somewhere the icon doesn't know about. Run `install.bat` again to repoint the icons it can find, or edit the icon's `Launch` line.
+- **Clicking an icon does nothing.** The app isn't installed, or it's installed somewhere the icon doesn't know about. Run `install.bat` (again, or for the first time if you installed the `.rmskin`) to repoint the icons it can find, or edit the icon's `Launch` line.
 - **No icons appear.** They fade in about a second after the sigil and fade away again after 10 seconds without use. Click the sigil to bring them back.
 - **The sigil or icons are in the wrong place.** Load `CodeGeass` again from **Manage > Layouts**. If you saved over it, run `install.bat` to get the original back.
 - **I want my old setup back.** The installer's backups are in `%APPDATA%\Rainmeter\Backups`. Rainmeter's **Layouts** tab also has `@Backup`, which is your setup from before the last layout was loaded.
