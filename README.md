@@ -19,7 +19,7 @@ That's it: the sigil and icons appear in the middle of your screen. Your previou
 | Do this | To |
 | --- | --- |
 | Click the sigil | Show or hide the icons |
-| Hover an icon | Show that app's wallpaper |
+| Hover an icon | Show that app's wallpaper (icons with several show a random one each time) |
 | Click an icon | Open the app |
 | Scroll over the sigil | Change the volume |
 | Right-click the sigil | Mute or unmute |
@@ -39,6 +39,7 @@ More icons come with it, including Telegram, Spotify, Brave, Office, Valorant, M
 
 - **Change what an icon opens:** right-click it, choose **Edit skin**, and change the `Launch` line, for example `Launch=["chrome.exe"]` or `Launch=["https://www.youtube.com"]`. Save, then right-click the icon and choose **Refresh skin**.
 - **Change a wallpaper:** replace its image in `Documents\Rainmeter\Skins\GurenHoneycomb\@Resources\Images\Wallpapers`, keeping the same file name.
+- **Give an icon more wallpapers:** put the image in the same `@Resources\Images\Wallpapers` folder. In `GurenHoneycomb\Wallpapers\<icon>`, copy the `.ini` (for example `Claude.ini` to `Claude 2.ini`) and change its `Image` to the new file. Then add `Wallpapers=2` to the icon's own `.ini` (right-click it, **Edit skin**). Each hover then shows one of its wallpapers at random, never the same one twice in a row.
 - **Keep your changes:** in **Manage > Layouts**, type `CodeGeass` as the name and click **Save**.
 
 ## Troubleshooting
